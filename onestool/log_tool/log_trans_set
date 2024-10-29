@@ -1,0 +1,22 @@
+#!/bin/bash
+
+file_path=$(realpath $0)
+script_path=$(dirname $file_path)
+tool_path=$(dirname $script_path)
+
+# read conf
+source $tool_path/conf/env.conf
+
+
+
+# config log trans set
+for ip in "${manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/log_tool/log_trans $user@$ip:/usr/bin/
+    echo "[INFO]$ip log trans config success"
+done
+
+for ip in "${client_manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/log_tool/log_trans $user@$ip:/usr/bin/
+    echo "[INFO]$ip log trans config success"
+done
+

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+file_path=$(realpath $0)
+script_path=$(dirname $file_path)
+tool_path=$(dirname $script_path)
+
+# read conf
+source $tool_path/conf/env.conf
+
+
+
+# config yum source
+for ip in "${manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/conf/NingOS.repo $user@$ip:/etc/yum.repos.d/
+    sshpass -p $passwd ssh $user@$ip "yum makecache"
+    echo "[INFO]$ip yum source config success"
+done
+
+for ip in "${client_manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/conf/NingOS.repo $user@$ip:/etc/yum.repos.d/
+    sshpass -p $passwd ssh $user@$ip "yum makecache"
+    echo "[INFO]$ip yum source config success"
+done
+

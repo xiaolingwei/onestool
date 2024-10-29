@@ -1,0 +1,55 @@
+#!/bin/bash
+
+if [ $1 == "INFO" ]; then
+    onestor dpe osd set_log_level level 3
+    onestor dpe eng_ctrl loglevel engine all module XCLIENT level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE_CTRL level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE_OPPROC level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE_LXM level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE_DESTAGE level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE_DM level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE_QM level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE_WAL level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE_RCACHE level 3
+    onestor dpe eng_ctrl loglevel engine all module WAL level 3
+    onestor dpe eng_ctrl loglevel engine all module WAL_APPEND level 3
+    onestor dpe eng_ctrl loglevel engine all module WAL_REPLAY level 3
+    onestor dpe eng_ctrl loglevel engine all module WAL_DELETE level 3
+    onestor dpe eng_ctrl loglevel engine all module WAL_DATA level 3
+    onestor dpe eng_ctrl loglevel engine all module DPECTL level 3
+    onestor dpe eng_ctrl loglevel engine all module ENGCTL level 3
+    onestor dpe eng_ctrl loglevel engine all module ROW level 3
+    onestor dpe eng_ctrl loglevel engine all module MDS level 3
+    onestor dpe eng_ctrl loglevel engine all module DDB_MDS level 3
+    onestor dpe eng_ctrl loglevel engine all module CACHE_CFM level 3
+    onestor dpe eng_ctrl loglevel engine all module BLK_INNER level 3
+    onestor dpe set hrpc-log level info
+elif [ $1 == "DEBUG" ]; then
+    onestor dpe osd set_log_level level 4
+    onestor dpe eng_ctrl loglevel engine all module XCLIENT level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE_CTRL level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE_OPPROC level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE_LXM level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE_DESTAGE level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE_DM level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE_QM level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE_WAL level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE_RCACHE level 4
+    onestor dpe eng_ctrl loglevel engine all module WAL level 4
+    onestor dpe eng_ctrl loglevel engine all module WAL_APPEND level 4
+    onestor dpe eng_ctrl loglevel engine all module WAL_REPLAY level 4
+    onestor dpe eng_ctrl loglevel engine all module WAL_DELETE level 4
+    onestor dpe eng_ctrl loglevel engine all module WAL_DATA level 4
+    onestor dpe eng_ctrl loglevel engine all module DPECTL level 4
+    onestor dpe eng_ctrl loglevel engine all module ENGCTL level 4
+    onestor dpe eng_ctrl loglevel engine all module ROW level 4
+    onestor dpe eng_ctrl loglevel engine all module MDS level 4
+    onestor dpe eng_ctrl loglevel engine all module DDB_MDS level 4
+    onestor dpe eng_ctrl loglevel engine all module CACHE_CFM level 4
+    onestor dpe eng_ctrl loglevel engine all module BLK_INNER level 4
+    onestor dpe set hrpc-log level debug
+else
+    echo "[ERROR]Invalid parameter, Please input INFO or DEBUG."
+fi

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+cur_path=`pwd`
+echo "[INFO]Current path is $cur_path."
+echo "use: log_trans CUR"
+echo "     log_trans target_file source_file"
+echo "example: log_trans  udc.log  udc.log.epc.log.blk-20241029-100741.gz"
+
+if [[ $cur_path =~ ^/var/log/storage/backup/[a-zA-Z]{3,11}$ ]]; then
+    echo "[INFO]start to trans."
+else
+    echo "[ERROR]Current path is invaild, please cd to /var/log/storage/backup/xxx dir."
+    exit 0
+fi
+
+trans_tmp_path="/var/log/storage/backup/trans_tmp"
+rm -rf $trans_tmp_path/*
+if [[ $1 == "CUR" ]]; then
+    trans_path=${cur_path//"/backup"}
+    echo "[INFO]Translate path is $trans_path, trans to pwd."
+    python3 /opt/h3c/script/infra-comp/log_blk_trans.py one_to_one $trans_path/*
+    cp -r $trans_tmp_path/* $cur_path
+elif [[ -f $cur_path/$2 ]]; then
+    source_path="$cur_path/$2"
+    target_path="$cur_path/$1"
+    echo "[INFO]Trans log from $source_path to $target_path"
+    python3 /opt/h3c/script/infra-comp/log_blk_trans.py $target_path $source_path
+
+else
+    echo "[ERROR]Invaild parameter, please input CUR to trans cur log or input target logfile and source logfile."
+fi

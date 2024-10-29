@@ -1,0 +1,74 @@
+#!/bin/bash
+file_path=$(realpath $0)
+tool_path=$(dirname $file_path)
+
+
+version_file=$tool_path/conf/tool_version
+
+print_help_info()
+{
+    echo "Welcome to use onestool!"
+    echo ""
+    echo "Usage: onestool [command]"
+    echo ""
+    echo "Commands:"
+    echo "  check cluster  Check cluster status and record"
+    echo "  coredump       Show cluster and client coredump file in recent"
+    echo "  env prepare    Config tool env and linux set for cluster and client(Include vim、history)"
+    echo "  env yum_config Config cluster and client yum source at NeiMengGu"
+    echo "  log set        Set log level, exp: onestool log set INFO"
+    echo "  log stor       Stor log for cluster and client, exp: onestool log stor /home/log_dir"
+    echo "  log trans_pre  Prepare log trans env for cluster and client"
+    echo "  help           Show this help message"
+    echo "  version        Show version"
+    echo ""
+}
+
+print_version_info()
+{
+    version=$(cat $version_file)
+    echo "version: $version"
+}
+
+
+
+
+module=$1
+action=$2
+
+case $module in
+    "coredump")
+       echo "[INFO]Start get coredump for showing"
+       bash $tool_path/coredump/show_coredump
+    ;;
+    "version")
+        print_version_info
+    ;;
+    "env")
+        if [ $action == "prepare" ]; then
+            bash $tool_path/env/prepare
+        elif [ $action == "yum_config" ]; then
+            bash $tool_path/env/yum_config
+        fi
+    ;;
+    "log")
+        if [ $action == "set" ]; then
+            bash $tool_path/log_tool/log_set $3
+        elif [ $action == "stor" ]; then
+            bash $tool_path/log_tool/log_stor $3
+        elif [ $action == "trans_pre" ]; then
+            bash $tool_path/log_tool/log_trans_set
+        fi
+    ;;
+    "help")
+        print_help_info
+    ;;
+    "check")
+        if [ $action == "cluster" ]; then
+            bash $tool_path/check/check_cluster
+        fi
+    ;;
+    *)
+        print_help_info
+    ;;
+esac

@@ -1,0 +1,27 @@
+#!/bin/bash
+
+
+file_path=$(realpath $0)
+script_path=$(dirname $file_path)
+tool_path=$(dirname $script_path)
+
+# read conf
+source $tool_path/conf/env.conf
+
+
+TWO_HOURS_AGO=$(date -d '-2 hours' '+%Y-%m-%d %H:%M:%S')
+
+# show core file in recent
+for ip in "${manage_ips[@]}"; do
+    echo "[INFO]Show coredump file in $ip."
+    sshpass -p $passwd ssh $user@$ip "find /var/lib/systemd/coredump -type f -newermt '${TWO_HOURS_AGO}'"
+done
+
+for ip in "${client_manage_ips[@]}"; do
+    echo "[INFO]Show coredump file in $ip."
+    sshpass -p $passwd ssh $user@$ip "find /var/lib/systemd/coredump -type f -newermt '${TWO_HOURS_AGO}'"
+done
+
+
+
+

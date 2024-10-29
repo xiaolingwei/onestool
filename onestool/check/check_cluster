@@ -1,0 +1,96 @@
+#!/bin/bash
+
+file_path=$(realpath $0)
+script_path=$(dirname $file_path)
+tool_path=$(dirname $script_path)
+
+# read conf
+source $tool_path/conf/env.conf
+
+# log info
+CURRENT_DATE=$(date +"%Y-%m-%d")
+echo `date` >> $tool_path/log/${CURRENT_DATE}_status.log
+
+# check engine
+onestor mon engine cli engine dump | grep -v UP
+onestor mon engine cli engine dump >> $tool_path/log/${CURRENT_DATE}_status.log
+
+# check eng_ctrl engine detail
+onestor dpe eng_ctrl engine_detail_status | grep INIT
+onestor dpe eng_ctrl engine_detail_status >> $tool_path/log/${CURRENT_DATE}_status.log
+
+# check osd
+onestor mon osd tree | grep -v up
+onestor mon osd tree >> $tool_path/log/${CURRENT_DATE}_status.log
+
+# check pg
+onestor dpe pg dump | grep -v "ACTIVE+CLEAN"
+onestor dpe pg dump >> $tool_path/log/${CURRENT_DATE}_status.log
+
+# check osd
+onestor mon osd tree | grep -v up
+onestor mon osd tree >> $tool_path/log/${CURRENT_DATE}_status.log
+
+# check core
+TWO_HOURS_AGO=$(date -d '-2 hours' '+%Y-%m-%d %H:%M:%S')
+for ip in "${manage_ips[@]}"; do
+    sshpass -p $passwd ssh $user@$ip "find /var/lib/systemd/coredump -type f -newermt '${TWO_HOURS_AGO}'"
+    echo "[INFO]Find core from $ip"
+done
+for ip in "${client_manage_ips[@]}"; do
+    sshpass -p $passwd ssh $user@$ip "find /var/lib/systemd/coredump -type f -newermt '${TWO_HOURS_AGO}'"
+    echo "[INFO]Find core from $ip"
+done
+
+# check net
+for ip in "${manage_ips[@]}"; do
+    ping -c 1 -W 1 $ip > /dev/null
+    if [ $? -ne 0 ]; then
+        echo "[ERROR]ping $ip failed."
+    fi
+done
+for ip in "${public_ips[@]}"; do
+    ping -c 1 -W 1 $ip > /dev/null
+    if [ $? -ne 0 ]; then
+        echo "[ERROR]ping $ip failed."
+    fi
+done
+for ip in "${cluster_ips[@]}"; do
+    ping -c 1 -W 1 $ip > /dev/null
+    if [ $? -ne 0 ]; then
+        echo "[ERROR]ping $ip failed."
+    fi
+done
+# check client net
+for ip in "${client_manage_ips[@]}"; do
+    ping -c 1 -W 1 $ip > /dev/null
+    if [ $? -ne 0 ]; then
+        echo "[ERROR]ping $ip failed."
+    fi
+done
+for ip in "${client_public_ips[@]}"; do
+    ping -c 1 -W 1 $ip > /dev/null
+    if [ $? -ne 0 ]; then
+        echo "[ERROR]ping $ip failed."
+    fi
+done
+
+# check process
+for ip in "${manage_ips[@]}"; do
+    echo "[INFO]$ip dpe process status:"
+    sshpass -p $passwd ssh $user@$ip "systemctl status dpe | grep Active"
+    echo "[INFO]$ip uds process status"
+    sshpass -p $passwd ssh $user@$ip "systemctl status uds | grep Active"
+done
+
+# check space
+for ip in "${manage_ips[@]}"; do
+    echo "[INFO]$ip df space status:"
+    flag=`sshpass -p $passwd ssh $user@$ip "df | grep 100%"`
+    if [[ $flag ]]; then
+        echo "[ERROR]$ip space is not enough."
+    else
+        echo "[INFO]$ip space is normal."
+    fi
+done
+

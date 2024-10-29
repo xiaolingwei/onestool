@@ -1,0 +1,130 @@
+Mon Oct 21 15:07:38 CST 2024
+epoch:23
+modified: 2024-10-21 00:00:43.737518
+DPE                     ENGINE  STATE                           DOWNAT/UPFROM   FLAGS   PUBLIC/CLUSTER_ADDR_INDEX
+196.168.26.44(node44)(dpe0) IN & UP
+196.168.26.45(node45)(dpe1) IN & UP
+196.168.26.46(node46)(dpe2) IN & UP
+                        1.0     IN & UP                         18     19       0x0       0  0 
+                        1.1     IN & UP                         18     19       0x0       0  0 
+                        1.2     IN & UP                         18     19       0x0       0  0 
+                        1.3     IN & UP                         18     19       0x0       1  1 
+                        1.4     IN & UP                         18     19       0x0       1  1 
+                        1.5     IN & UP                         18     19       0x0       0  0 
+                        1.6     IN & UP                         18     19       0x0       1  1 
+                        1.7     IN & UP                         18     19       0x0       1  1 
+                        1.8     IN & UP                         18     19       0x0       1  1 
+                        1.9     IN & UP                         18     19       0x0       1  1 
+                        1.10    IN & UP                         18     19       0x0       0  0 
+                        1.11    IN & UP                         18     19       0x0       1  1 
+                        1.12    IN & UP                         16     17       0x0       1  1 
+                        1.13    IN & UP                         16     17       0x0       0  0 
+                        1.14    IN & UP                         16     17       0x0       1  1 
+                        1.15    IN & UP                         16     17       0x0       1  1 
+                        1.16    IN & UP                         0      6        0x0       1  1 
+                        1.17    IN & UP                         0      6        0x0       0  0 
+                        1.18    IN & UP                         0      6        0x0       1  1 
+                        1.19    IN & UP                         0      6        0x0       0  0 
+                        1.20    IN & UP                         0      6        0x0       1  1 
+                        1.21    IN & UP                         0      6        0x0       0  0 
+                        1.22    IN & UP                         0      6        0x0       1  1 
+                        1.23    IN & UP                         0      6        0x0       0  0 
+                        4.0     IN & UP                         18     19       0x0       0  0 
+                        4.1     IN & UP                         18     19       0x0       1  1 
+                        4.2     IN & UP                         18     19       0x0       0  0 
+                        4.3     IN & UP                         18     19       0x0       1  1 
+                        4.4     IN & UP                         18     19       0x0       1  1 
+                        4.5     IN & UP                         18     19       0x0       1  1 
+                        4.6     IN & UP                         18     19       0x0       0  0 
+                        4.7     IN & UP                         18     19       0x0       0  0 
+                        4.8     IN & UP                         18     19       0x0       0  0 
+                        4.9     IN & UP                         18     19       0x0       0  0 
+                        4.10    IN & UP                         18     19       0x0       1  1 
+                        4.11    IN & UP                         18     19       0x0       1  1 
+                        4.12    IN & UP                         16     17       0x0       1  1 
+                        4.13    IN & UP                         16     17       0x0       0  0 
+                        4.14    IN & UP                         16     17       0x0       1  1 
+                        4.15    IN & UP                         16     17       0x0       0  0 
+                        4.16    IN & UP                         0      6        0x0       1  1 
+                        4.17    IN & UP                         0      6        0x0       0  0 
+                        4.18    IN & UP                         0      6        0x0       1  1 
+                        4.19    IN & UP                         0      6        0x0       0  0 
+                        4.20    IN & UP                         0      6        0x0       1  1 
+                        4.21    IN & UP                         0      6        0x0       0  0 
+                        4.22    IN & UP                         0      6        0x0       1  1 
+                        4.23    IN & UP                         0      6        0x0       0  0 
+                        7.0     IN & UP                         18     19       0x0       1  1 
+                        7.1     IN & UP                         18     19       0x0       0  0 
+                        7.2     IN & UP                         18     19       0x0       0  0 
+                        7.3     IN & UP                         18     19       0x0       0  0 
+                        7.4     IN & UP                         18     19       0x0       0  0 
+                        7.5     IN & UP                         18     19       0x0       0  0 
+                        7.6     IN & UP                         18     19       0x0       0  0 
+                        7.7     IN & UP                         18     19       0x0       1  1 
+                        7.8     IN & UP                         18     19       0x0       1  1 
+                        7.9     IN & UP                         18     19       0x0       0  0 
+                        7.10    IN & UP                         18     19       0x0       1  1 
+                        7.11    IN & UP                         18     19       0x0       1  1 
+                        7.12    IN & UP                         16     17       0x0       1  1 
+                        7.13    IN & UP                         16     17       0x0       1  1 
+                        7.14    IN & UP                         16     17       0x0       0  0 
+                        7.15    IN & UP                         16     17       0x0       1  1 
+                        7.16    IN & UP                         0      8        0x0       0  0 
+                        7.17    IN & UP                         0      8        0x0       1  1 
+                        7.18    IN & UP                         0      8        0x0       0  0 
+                        7.19    IN & UP                         0      8        0x0       1  1 
+                        7.20    IN & UP                         0      8        0x0       0  0 
+                        7.21    IN & UP                         0      8        0x0       1  1 
+                        7.22    IN & UP                         0      8        0x0       0  0 
+                        7.23    IN & UP                         0      8        0x0       1  1 
+                        10.0    IN & UP                         18     19       0x0       1  1 
+                        10.1    IN & UP                         18     19       0x0       1  1 
+                        10.2    IN & UP                         18     19       0x0       0  0 
+                        10.3    IN & UP                         18     19       0x0       1  1 
+                        10.4    IN & UP                         18     19       0x0       1  1 
+                        10.5    IN & UP                         18     19       0x0       0  0 
+                        10.6    IN & UP                         18     19       0x0       0  0 
+                        10.7    IN & UP                         18     19       0x0       0  0 
+                        10.8    IN & UP                         18     19       0x0       0  0 
+                        10.9    IN & UP                         18     19       0x0       0  0 
+                        10.10   IN & UP                         18     19       0x0       0  0 
+                        10.11   IN & UP                         18     19       0x0       1  1 
+                        10.12   IN & UP                         16     17       0x0       1  1 
+                        10.13   IN & UP                         16     17       0x0       0  0 
+                        10.14   IN & UP                         16     17       0x0       0  0 
+                        10.15   IN & UP                         16     17       0x0       0  0 
+                        10.16   IN & UP                         0      10       0x0       1  1 
+                        10.17   IN & UP                         0      10       0x0       0  0 
+                        10.18   IN & UP                         0      10       0x0       1  1 
+                        10.19   IN & UP                         0      10       0x0       0  0 
+                        10.20   IN & UP                         0      10       0x0       1  1 
+                        10.21   IN & UP                         0      10       0x0       0  0 
+                        10.22   IN & UP                         0      10       0x0       1  1 
+                        10.23   IN & UP                         0      10       0x0       0  0 
+
+
+ID        CLASS     WEIGHT    TYPE NAME                STATUS    REWEIGHT  PRI-AFF   
+-1                  0.000       root  maintain
+-2                  16.374      root  file
+-4                  16.374        rack  j1.file
+-3                  5.458           host  node44.file
+0         NVME      0.910             osd.0              down      1.00000   1.00000   
+1         NVME      0.910             osd.1              down      1.00000   1.00000   
+2         NVME      0.910             osd.2              down      0.00000   1.00000   
+3         NVME      0.910             osd.3              down      0.00000   1.00000   
+4         NVME      0.910             osd.4              down      0.00000   1.00000   
+5         NVME      0.910             osd.5              down      0.00000   1.00000   
+-9                  5.458           host  node45.file
+6         NVME      0.910             osd.6              down      1.00000   1.00000   
+7         NVME      0.910             osd.7              down      0.00000   1.00000   
+8         NVME      0.910             osd.8              down      0.00000   1.00000   
+9         NVME      0.910             osd.9              down      0.00000   1.00000   
+10        NVME      0.910             osd.10             down      0.00000   1.00000   
+11        NVME      0.910             osd.11             down      0.00000   1.00000   
+-11                 5.458           host  node46.file
+12        NVME      0.910             osd.12             up        1.00000   1.00000   
+13        NVME      0.910             osd.13             up        1.00000   1.00000   
+14        NVME      0.910             osd.14             up        1.00000   1.00000   
+15        NVME      0.910             osd.15             up        1.00000   1.00000   
+16        NVME      0.910             osd.16             up        1.00000   1.00000   
+17        NVME      0.910             osd.17             up        1.00000   1.00000  
