@@ -31,12 +31,12 @@ done
 
 for ip in "${client_manage_ips[@]}"; do
     echo "[INFO]Processing IP: $ip"
-    if `sshpass -p "${passwd}" ssh $user@$ip "grep -q HISTTIMEFORMAT ~/.bashrc"`; then
+    if `sshpass -p "${passwd}" ssh $user@$ip "sudo grep -q HISTTIMEFORMAT ~/.bashrc"`; then
         echo "[INFO]$ip history time already add."
     else
-        cmd="echo 'export HISTTIMEFORMAT=\"%Y-%m-%d %H:%M:%S\"' >> ~/.bashrc"
+        cmd="sudo echo 'export HISTTIMEFORMAT=\"%Y-%m-%d %H:%M:%S\"' >> ~/.bashrc"
         sshpass -p $passwd ssh $user@$ip $cmd
-        sshpass -p "{$passwd}" ssh $user@"${ip}" "source ~/.bashrc"
+        sshpass -p "{$passwd}" ssh $user@"${ip}" "sudo source ~/.bashrc"
         echo "[INFO]$ip history time add success."
     fi
 done

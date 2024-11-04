@@ -9,6 +9,7 @@ source $tool_path/conf/env.conf
 
 # log info
 CURRENT_DATE=$(date +"%Y-%m-%d")
+echo "[INFO]Check start." >>$tool_path/log/${CURRENT_DATE}_status.log
 echo `date` >> $tool_path/log/${CURRENT_DATE}_status.log
 
 # check engine
