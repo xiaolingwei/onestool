@@ -43,10 +43,7 @@ set nu
 "hi Comment ctermfg=DarkCyan
 "允许退格键删除
 "set backspace=2
-"启用鼠标
-set mouse=a
-set selection=exclusive
-set selectmode=mouse,key
+
 "按C语言格式缩进
 set cindent
 set autoindent

@@ -1,0 +1,8 @@
+messagescan=no
+data_errors=50
+hd=hd1,system=localhost,vdbench=/root/vdbench50403,user=root,shell=ssh
+fsd=fsd1,anchor=/mnt/dir1,depth=2,width=1,files=1,size=100M,shared=yes,openflags=o_direct
+fwd=default,threads=32,xfersize=1M,openflags=o_direct,fileio=seq,fileselect=seq,operation=write
+fwd=fwd1,fsd=fsd1,host=hd1,openflags=o_direct
+rd=rd1,fwd=fwd*,fwdrate=max,format=only,elapsed=72000,interval=1
+

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+
+
+time_stamp=`date +"%H:%M:%S"`
+
+file_path=$(realpath $0)
+script_path=$(dirname $file_path)
+tool_path=$(dirname $script_path)
+
+# read conf
+source $tool_path/conf/env.conf
+
+
+# sync all node time
+for ip in "${manage_ips[@]}"; do
+    sshpass -p $passwd ssh $user@$ip "date -s $time_stamp"
+    echo "[INFO]$ip time sync success"
+done
+for ip in "${client_manage_ips[@]}"; do
+    sshpass -p $passwd ssh $user@$ip "date -s $time_stamp"
+    echo "[INFO]$ip time sync success"
+done
+
