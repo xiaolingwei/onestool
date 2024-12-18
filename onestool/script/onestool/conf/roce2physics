@@ -1,0 +1,42 @@
+#!/bin/bash
+# CAS物理机专用配置无损
+
+
+
+file_path=$(realpath $0)
+script_path=$(dirname $file_path)
+tool_path=$(dirname $script_path)
+
+# read conf
+source $tool_path/conf/env.conf
+
+
+
+# config mlnx lossless
+for ip in "${manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/script/mlnx/mlnx-lossless.tgz $user@$ip:/
+    sshpass -p $passwd ssh $user@$ip "tar -xvf /mlnx-lossless.tgz"
+    sshpass -p $passwd ssh $user@$ip "systemctl daemon-reload"
+    sshpass -p $passwd ssh $user@$ip "systemctl start mlnx-lossless"
+    sshpass -p $passwd ssh $user@$ip "systemctl enable mlnx-lossless"
+    echo "[INFO]$ip mlnx lossless config success"
+done
+
+for ip in "${client_manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/script/mlnx/mlnx-lossless.tgz $user@$ip:/
+    sshpass -p $passwd ssh $user@$ip "tar -xvf /mlnx-lossless.tgz"
+    sshpass -p $passwd ssh $user@$ip "systemctl daemon-reload"
+    sshpass -p $passwd ssh $user@$ip "systemctl start mlnx-lossless"
+    sshpass -p $passwd ssh $user@$ip "systemctl enable mlnx-lossless"
+    echo "[INFO]$ip mlnx lossless config success"
+done
+
+
+
+
+
+
+
+
+
+

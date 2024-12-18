@@ -1,0 +1,35 @@
+[base]
+name=CentOS-mycompany - Base
+baseurl=http://55.99.140.1/centos/$releasever/os/$basearch/
+gpgcheck=1
+gpgkey=http://55.99.140.1/centos/RPM-GPG-KEY-CentOS-$releasever
+
+#released updates
+[update]
+name=CentOS-mycompany - Updates
+baseurl=http://55.99.140.1/centos/$releasever/updates/$basearch/
+gpgcheck=1
+gpgkey=http://55.99.140.1/centos/RPM-GPG-KEY-CentOS-$releasever
+#additional packages that may be useful
+
+[extras]
+name=CentOS-mycompany - Extras
+baseurl=http://55.99.140.1/centos/$releasever/extras/$basearch/
+gpgcheck=1
+gpgkey=http://55.99.140.1/centos/RPM-GPG-KEY-CentOS-$releasever
+#additional packages that extend functionality of existing packages
+
+[centosplus]
+name=CentOS-mycompany - Plus
+baseurl=http://55.99.140.1/centos/$releasever/centosplus/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=http://55.99.140.1/centos/RPM-GPG-KEY-CentOS-$releasever
+
+#contrib - packages by Centos Users
+[contrib]
+name=CentOS-mycompany - Contrib
+baseurl=http://55.99.140.1/centos/$releasever/contrib/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey=http://55.99.140.1/centos/RPM-GPG-KEY-CentOS-$releasever

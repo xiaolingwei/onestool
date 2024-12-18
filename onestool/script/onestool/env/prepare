@@ -1,0 +1,55 @@
+#!/bin/bash
+
+file_path=$(realpath $0)
+script_path=$(dirname $file_path)
+tool_path=$(dirname $script_path)
+
+# read conf
+source $tool_path/conf/env.conf
+
+# add env var
+if cat ~/.bashrc | grep -q $tool_path; then
+    echo "[INFO]env var already add, please relogin."
+else
+    echo 'export PATH="/root/onestool/:$PATH"' >> ~/.bashrc
+    source ~/.bashrc
+    echo "[INFO]env var add success."
+fi
+
+# add history time
+for ip in "${manage_ips[@]}"; do
+    echo "[INFO]Processing IP: $ip"
+    if `sshpass -p "${passwd}" ssh $user@$ip "grep -q HISTTIMEFORMAT ~/.bashrc"`; then
+	    echo "[INFO]$ip history time already add."
+	else
+        cmd="echo 'export HISTTIMEFORMAT=\"%Y-%m-%d %H:%M:%S\"' >> ~/.bashrc"
+	    sshpass -p $passwd ssh $user@$ip $cmd
+	    sshpass -p "{$passwd}" ssh $user@"${ip}" "source ~/.bashrc"
+	    echo "[INFO]$ip history time add success."
+	fi
+done
+
+for ip in "${client_manage_ips[@]}"; do
+    echo "[INFO]Processing IP: $ip"
+    if `sshpass -p "${passwd}" ssh $user@$ip "sudo grep -q HISTTIMEFORMAT ~/.bashrc"`; then
+        echo "[INFO]$ip history time already add."
+    else
+        cmd="sudo echo 'export HISTTIMEFORMAT=\"%Y-%m-%d %H:%M:%S\"' >> ~/.bashrc"
+        sshpass -p $passwd ssh $user@$ip $cmd
+        sshpass -p "{$passwd}" ssh $user@"${ip}" "sudo source ~/.bashrc"
+        echo "[INFO]$ip history time add success."
+    fi
+done
+
+
+# config vim
+for ip in "${manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/conf/vimrc $user@$ip:~/.vimrc
+    echo "[INFO]$ip vim config success"
+done
+
+for ip in "${client_manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/conf/vimrc $user@$ip:~/.vimrc    
+    echo "[INFO]$ip vim config success"
+done
+

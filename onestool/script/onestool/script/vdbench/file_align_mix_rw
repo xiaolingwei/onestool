@@ -1,0 +1,11 @@
+messagescan=no
+create_anchors=yes
+data_error=10
+fsd=fsd1,anchor=/mnt/mount_epc1,depth=3,width=3,files=500,size=512K,openflags=o_direct,shared=yes
+fsd=fsd2,anchor=/mnt/mount_nfs1,depth=3,width=3,files=500,size=512K,openflags=o_direct,shared=yes
+fwd=fwd1,fsd=fsd1,fileio=random,fileselect=seq,operation=read,rdpct=60,xfersize=(1K,9,8K,9,16K,9,32K,9,64K,8,128K,8,256K,8,512K,8,1M,8,2M,8,4M,8,5M,8),threads=32
+fwd=fwd2,fsd=fsd2,fileio=random,fileselect=seq,operation=read,rdpct=60,xfersize=(1K,9,8K,9,16K,9,32K,9,64K,8,128K,8,256K,8,512K,8,1M,8,2M,8,4M,8,5M,8),threads=32
+fwd=format,xfersize=512K,threads=48
+rd=default,fwd=fwd*,fwdrate=max,elapsed=72000,interval=1
+rd=rd1,fwd=fwd*,format=restart
+

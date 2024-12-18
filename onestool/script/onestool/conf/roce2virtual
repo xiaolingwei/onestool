@@ -1,0 +1,63 @@
+#!/bin/bash
+# 虚拟机专用配置无损
+
+
+parse_ibdev2netdev() {
+    local output
+    output=$(ibdev2netdev)
+    local index=0
+    mlx_names=()
+    ib_names=()
+
+    # 逐行处理输出
+    while IFS= read -r line; do
+        # 使用正则表达式提取信息
+        mlx_names+=(`echo $line | grep -oP "(mlx5_[0-9])"`)
+        ib_names+=(`echo $line | grep -oP "ib[0-9][a-zA-Z]-[0-9]"`)
+        # 计数器增加
+        ((index++))
+    done <<< "$output"
+    # 输出结果
+    echo "mlx devices are: ${mlx_names[@]}"
+    echo "ib devices are: ${ib_names[@]}"
+}
+
+
+roce_dev_config(){
+
+for mlx_dev in $mlx_names;do
+    cma_roce_mode -d "${mlx_dev}" -p 1 -m 2  # 设置模式Roce v2
+    cma_roce_tos -d "${mlx_dev}" -t 162
+    echo 162 > /sys/class/infiniband/$mlx_dev/tc/1/traffic_class
+
+done
+
+
+for if_dev in $ib_names;do
+    mlnx_qos -i "${if_dev}" --pfc 0,0,0,0,0,1,0,0 --trust dscp
+    echo 6 > /sys/class/net/${if_dev}/ecn/roce_np/cnp_802p_prio # ecn的CNP走优先级6通道
+done
+
+sysctl -w net.ipv4.tcp_ecn=1
+
+}
+
+# 调用函数
+parse_ibdev2netdev
+
+roce_dev_config
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,25 @@
+#!/bin/bash
+
+file_path=$(realpath $0)
+script_path=$(dirname $file_path)
+tool_path=$(dirname $script_path)
+
+# read conf
+source $tool_path/conf/env.conf
+
+
+
+# config roce set
+for ip in "${manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/conf/roce $user@$ip:/usr/bin/
+    sshpass -p $passwd ssh $user@$ip "bash /usr/bin/roce"
+    echo "[INFO]$ip roce set config success"
+done
+
+for ip in "${client_manage_ips[@]}"; do
+    sshpass -p "${passwd}" scp $tool_path/conf/roce $user@$ip:/usr/bin/
+    sshpass -p $passwd ssh $user@$ip "bash /usr/bin/roce"
+    echo "[INFO]$ip roce set config success"
+done
+
+
